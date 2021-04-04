@@ -18,7 +18,7 @@ import {
 const webMap = new WebMap('ol-container')
   .use(new Basemap())
   .use(new MapCursor())
-	.mount()
+  .mount()
 ```
 
 

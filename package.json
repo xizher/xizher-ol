@@ -1,7 +1,7 @@
 {
   "name": "@xizher/ol",
   "version": "1.0.1",
-  "description": "",
+  "description": "基于Openlayers的业务功能型二次开发地图API",
   "main": "dist/index.js",
   "scripts": {
     "test": "vite",

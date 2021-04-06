@@ -85,7 +85,7 @@ webMap.mapCursor.setCursor('xxx')
 
 ## UML
 
-![基于业务功能型的地图API二次开发UML](.\基于业务功能型的地图API二次开发UML.png)
+![基于业务功能型的地图API二次开发UML](基于业务功能型的地图API二次开发UML.png)
 
 ## TODO
 

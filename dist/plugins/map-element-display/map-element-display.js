@@ -186,36 +186,66 @@ export class MapElementDisplay extends WebMapPlugin {
     }
     /**
      * 解析基础图元
+     * @param geometry 几何图形
+     * @param styleOptions 样式配置项
+     */
+    parseGraphic(geometry, styleOptions) {
+        let style, options = {};
+        switch (geometry.getType()) {
+            case 'Point':
+                options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.pointStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            case 'LineString':
+            case 'MultiLineString':
+                options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.polylineStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            case 'Polygon':
+            case 'Circle':
+                options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.polygonStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            default:
+                break;
+        }
+        return createFeature({ style, geometry });
+    }
+    /**
+     * 解析基础图元
      * @param geometries 几何图形
      * @param styleOptions 样式配置项
      */
     parseGraphics(geometries, styleOptions) {
         const _geometries = Array.isArray(geometries) ? geometries : [geometries];
-        return _geometries.map(geometry => {
-            let style, options = {};
-            switch (geometry.getType()) {
-                case 'Point':
-                    options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.pointStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                case 'LineString':
-                case 'MultiLineString':
-                    options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.polylineStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                case 'Polygon':
-                case 'Circle':
-                    options = baseUtils.deepCopy(this._styleOptions.graphicsStyle.polygonStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                default:
-                    break;
-            }
-            return createFeature({ style, geometry });
-        });
+        return _geometries.map(geometry => this.parseGraphic(geometry, styleOptions));
+    }
+    parseHighlightGraphic(geometry, styleOptions) {
+        let style, options = {};
+        switch (geometry.getType()) {
+            case 'Point':
+                options = baseUtils.deepCopy(this._styleOptions.highlightStyle.pointStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            case 'LineString':
+            case 'MultiLineString':
+                options = baseUtils.deepCopy(this._styleOptions.highlightStyle.polylineStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            case 'Polygon':
+                options = baseUtils.deepCopy(this._styleOptions.highlightStyle.polygonStyle);
+                baseUtils.$extend(true, options, styleOptions);
+                style = createStyle2(options);
+                break;
+            default:
+                break;
+        }
+        return createFeature({ style, geometry });
     }
     /**
      * 解析高亮图元
@@ -224,30 +254,7 @@ export class MapElementDisplay extends WebMapPlugin {
      */
     parseHighlightGraphics(geometries, styleOptions) {
         const _geometries = Array.isArray(geometries) ? geometries : [geometries];
-        return _geometries.map(geometry => {
-            let style, options = {};
-            switch (geometry.getType()) {
-                case 'Point':
-                    options = baseUtils.deepCopy(this._styleOptions.highlightStyle.pointStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                case 'LineString':
-                case 'MultiLineString':
-                    options = baseUtils.deepCopy(this._styleOptions.highlightStyle.polylineStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                case 'Polygon':
-                    options = baseUtils.deepCopy(this._styleOptions.highlightStyle.polygonStyle);
-                    baseUtils.$extend(true, options, styleOptions);
-                    style = createStyle2(options);
-                    break;
-                default:
-                    break;
-            }
-            return createFeature({ style, geometry });
-        });
+        return _geometries.map(geometry => this.parseHighlightGraphic(geometry, styleOptions));
     }
 }
 export default MapElementDisplay;

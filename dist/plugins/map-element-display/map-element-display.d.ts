@@ -74,10 +74,17 @@ export declare class MapElementDisplay extends WebMapPlugin<{}> {
     clearAll(): this;
     /**
      * 解析基础图元
+     * @param geometry 几何图形
+     * @param styleOptions 样式配置项
+     */
+    parseGraphic(geometry: Geometry, styleOptions: IStyleOptions): Feature;
+    /**
+     * 解析基础图元
      * @param geometries 几何图形
      * @param styleOptions 样式配置项
      */
     parseGraphics(geometries: Geometry | Geometry[], styleOptions: IStyleOptions): Feature[];
+    parseHighlightGraphic(geometry: Geometry, styleOptions: IStyleOptions): Feature;
     /**
      * 解析高亮图元
      * @param geometries 几何图形

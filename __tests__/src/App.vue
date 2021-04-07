@@ -3,17 +3,32 @@
   <div :id="id"></div>
   <div v-if="loaded">
     <BasemapControl />
+    <BaseToolsControl />
+    <MarkToolControl />
+    <MeasureToolControl />
   </div>
 </div>
 </template>
 
 <script>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { WebMap, MapCursor, Basemap } from '../../dist'
+import {
+  WebMap,
+  MapCursor,
+  Basemap,
+  MapElementDisplay,
+  MapTools,
+} from '../../dist'
 import BasemapControl from './components/BasemapControl.vue'
+import BaseToolsControl from './components/BaseToolsControl.vue'
+import MarkToolControl from './components/MarkToolControl.vue'
+import MeasureToolControl from './components/MeasureToolControl.vue'
 export default {
   components: {
     BasemapControl,
+    BaseToolsControl,
+    MarkToolControl,
+    MeasureToolControl,
   },
   name: 'test',
   setup () {
@@ -28,6 +43,8 @@ export default {
     })
       .use(new Basemap())
       .use(new MapCursor())
+      .use(new MapElementDisplay())
+      .use(new MapTools())
     const loaded = ref(false)
     const handler = webMap.on('loaded', () => {
       window.webMap = webMap

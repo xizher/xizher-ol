@@ -1,10 +1,12 @@
 import BaseLayer from 'ol/layer/Base';
 import WebMapPlugin from '../../web-map-plugin/web-map-plugin';
 import WebMap from '../../web-map/web-map';
+/** 底图控制插件配置项 */
 export interface IBasemapOptions {
     key?: string;
     visible?: boolean;
 }
+/** 底图控制插件类 */
 export declare class Basemap extends WebMapPlugin<{
     'change': {
         key: string;
@@ -42,7 +44,7 @@ export declare class Basemap extends WebMapPlugin<{
      * 构造底图控制插件类
      * @param options 配置项
      */
-    constructor(options: IBasemapOptions);
+    constructor(options?: IBasemapOptions);
     /** 初始化 */
     private _init;
     /**
@@ -50,6 +52,10 @@ export declare class Basemap extends WebMapPlugin<{
      * @returns this
      */
     private _createTianDiTu;
+    /**
+     * 创建GeoQ底图项
+     * @returns this
+     */
     private _createGeoQDiTu;
     /**
      * 重写：安装插件

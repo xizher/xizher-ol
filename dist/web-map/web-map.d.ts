@@ -7,6 +7,7 @@ import Basemap from '../plugins/basemap/basemap';
 import MapCursor from '../plugins/map-cursor/map-cursor';
 import MapElementDisplay from '../plugins/map-element-display/map-element-display';
 import MapTools from '../plugins/map-tools/map-tools';
+import LayerOperation from '../plugins/layer-operation/layer-operation';
 /** 地图对象接口 */
 export interface IMap extends OlMap {
     $owner: WebMap;
@@ -28,6 +29,7 @@ export declare class WebMap extends Observer<{
     mapCursor?: MapCursor;
     mapElementDisplay?: MapElementDisplay;
     mapTools?: MapTools;
+    layerOperation?: LayerOperation;
     /** 地图目标容器Id */
     private _targetDiv;
     /** 地图对象 */

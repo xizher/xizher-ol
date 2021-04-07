@@ -28,11 +28,10 @@ export class FullmapTool extends BaseTool<{
     if (!super.onToolActived(event)) {
       return false
     }
-    // TODO
-    // const extent = this.map.$owner.layerOperation.getFullExtent()
-    // if (extent) {
-    //   this.view.fit(extent, { duration: 500 })
-    // }
+    const extent = this.map.$owner.layerOperation.getFullExtent()
+    if (extent) {
+      this.view.fit(extent, { duration: 500 })
+    }
     return true
   }
 

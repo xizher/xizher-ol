@@ -29,6 +29,7 @@
     "vite": "^2.1.5"
   },
   "dependencies": {
+    "@xizher/fetch-helper": "^1.0.6",
     "@xizher/js-ext": "^1.0.0",
     "@xizher/js-utils": "^1.0.0",
     "@xizher/observer": "^1.0.2",

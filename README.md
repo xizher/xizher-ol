@@ -17,11 +17,17 @@ import {
   WebMap,
   MapCursor,
   Basemap,
+  MapElementDisplay,
+  MapTools,
+  LayerOperation,
 } from '@xizher/ol'
 
 const webMap = new WebMap('ol-container')
   .use(new Basemap())
   .use(new MapCursor())
+  .use(new MapElementDisplay())
+  .use(new MapTools())
+  .use(new LayerOperation())
   .mount() // 当document渲染完成时执行 mount
 
 // 例子：底图控制
@@ -31,6 +37,14 @@ webMap.basemap.setVisible(true)
 
 // 例子：地图鼠标样式控制
 webMap.mapCursor.setCursor('xxx')
+// ...
+
+// 例子：地图工具链调用
+webMap.mapTools.setMapTool('xxx')
+// ...
+
+// 例子：获取图层对象
+webMap.layerOperation.getLayerByName('xxx')
 // ...
 ```
 
@@ -83,12 +97,45 @@ webMap.mapCursor.setCursor('xxx')
 
 -  `'change': { type: MapCursorType }` → 当前地图鼠标样式变化触发
 
+### MapElementDisplay 图元控制插件
+
+
+
+### MapTools 地图工具链插件
+
+默认工具可选项：
+
+- `default`
+- `draw-point`
+- `draw-line`
+- `draw-line-faster`
+- `draw-polyline`
+- `draw-polygon`
+- `draw-rectangle`
+- `draw-rectangle-faster`
+- `draw-circle`
+- `draw-circle-faster`
+- `zoom-in`
+- `zoom-out`
+- `zoom-in-rect`
+- `zoom-out-rect`
+- `mark`
+- `mark-remove`
+- `measure`
+- `measure-remove`
+- `zoom-home`
+- `fullscreen`
+- `fullmap`
+- `clear`
+- `hit-test`
+
+### LayerOperation 图层控制插件
+
+
+
 ## UML
 
 ![基于业务功能型的地图API二次开发UML](基于业务功能型的地图API二次开发UML.png)
 
 ## TODO
 
-- 地图工具链插件（MapTools）
-- 地图图元控制插件（MapElementDisplay）
-- 图层控制插件（LayerOperations）

@@ -1,0 +1,348 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@xizher/ol</title>
+	<meta name="description" content="Documentation for @xizher/ol">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@xizher/ol</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@xizher/ol</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#xizherol" id="xizherol" style="color: inherit; text-decoration: none;">
+					<h1>@xizher/ol</h1>
+				</a>
+				<a href="#介绍" id="介绍" style="color: inherit; text-decoration: none;">
+					<h2>介绍</h2>
+				</a>
+				<p>基于Openlayers的业务功能型二次开发地图库，集成包括<strong>地图底图控制</strong>、<strong>地图鼠标样式控制</strong>等功能，这些功能可通过<u><em>插件</em></u>方式按需引入到地图库统一入口类WebMap中。</p>
+				<a href="#安装" id="安装" style="color: inherit; text-decoration: none;">
+					<h2>安装</h2>
+				</a>
+				<pre><code class="language-bash"><span style="color: #000000">npm install @xizher/ol</span>
+</code></pre>
+				<a href="#使用" id="使用" style="color: inherit; text-decoration: none;">
+					<h2>使用</h2>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">WebMap</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">MapCursor</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">Basemap</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">MapElementDisplay</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">MapTools</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">LayerOperation</span><span style="color: #000000">,</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@xizher/ol&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">webMap</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WebMap</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ol-container&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Basemap</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MapCursor</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MapElementDisplay</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MapTools</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">use</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">LayerOperation</span><span style="color: #000000">())</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">mount</span><span style="color: #000000">() </span><span style="color: #008000">// 当document渲染完成时执行 mount</span>
+
+<span style="color: #008000">// 例子：底图控制</span>
+<span style="color: #001080">webMap</span><span style="color: #000000">.</span><span style="color: #001080">basemap</span><span style="color: #000000">.</span><span style="color: #795E26">setBasemap</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;xxx&#039;</span><span style="color: #000000">)</span>
+<span style="color: #001080">webMap</span><span style="color: #000000">.</span><span style="color: #001080">basemap</span><span style="color: #000000">.</span><span style="color: #795E26">setVisible</span><span style="color: #000000">(</span><span style="color: #0000FF">true</span><span style="color: #000000">)</span>
+<span style="color: #008000">// ...</span>
+
+<span style="color: #008000">// 例子：地图鼠标样式控制</span>
+<span style="color: #001080">webMap</span><span style="color: #000000">.</span><span style="color: #001080">mapCursor</span><span style="color: #000000">.</span><span style="color: #795E26">setCursor</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;xxx&#039;</span><span style="color: #000000">)</span>
+<span style="color: #008000">// ...</span>
+
+<span style="color: #008000">// 例子：地图工具链调用</span>
+<span style="color: #001080">webMap</span><span style="color: #000000">.</span><span style="color: #001080">mapTools</span><span style="color: #000000">.</span><span style="color: #795E26">setMapTool</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;xxx&#039;</span><span style="color: #000000">)</span>
+<span style="color: #008000">// ...</span>
+
+<span style="color: #008000">// 例子：获取图层对象</span>
+<span style="color: #001080">webMap</span><span style="color: #000000">.</span><span style="color: #001080">layerOperation</span><span style="color: #000000">.</span><span style="color: #795E26">getLayerByName</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;xxx&#039;</span><span style="color: #000000">)</span>
+<span style="color: #008000">// ...</span>
+</code></pre>
+				<a href="#插件" id="插件" style="color: inherit; text-decoration: none;">
+					<h2>插件</h2>
+				</a>
+				<a href="#basemap-底图控制插件" id="basemap-底图控制插件" style="color: inherit; text-decoration: none;">
+					<h3>Basemap 底图控制插件</h3>
+				</a>
+				<p>默认底图项：</p>
+				<ul>
+					<li>天地图影像</li>
+					<li>天地图影像含注记</li>
+					<li>天地图矢量</li>
+					<li>天地图矢量含注记</li>
+					<li>天地图地形</li>
+					<li>天地图地形含注记</li>
+					<li>彩色地图</li>
+					<li>灰色地图</li>
+					<li>蓝黑色地图</li>
+					<li>暖色地图</li>
+				</ul>
+				<p>监听项：</p>
+				<ul>
+					<li><p> <code>&#39;change&#39;: { key: string, visible: boolean }</code> → 当前显示底图项变化或底图可见性变化触发</p>
+					</li>
+					<li><p> <code>&#39;change:key&#39;: { key: string }</code> → 当前显示底图项变化触发</p>
+					</li>
+					<li><p> <code>&#39;change:visible&#39;: { visible: boolean }</code> → 底图可见性变化触发</p>
+					</li>
+				</ul>
+				<a href="#mapcursor-地图鼠标样式控制插件" id="mapcursor-地图鼠标样式控制插件" style="color: inherit; text-decoration: none;">
+					<h3>MapCursor 地图鼠标样式控制插件</h3>
+				</a>
+				<p>鼠标样式可选项</p>
+				<ul>
+					<li><p><code>&#39;default&#39;</code></p>
+					</li>
+					<li><p><code>&#39;pan&#39;</code></p>
+					</li>
+					<li><p><code>&#39;panning&#39;</code></p>
+					</li>
+					<li><p><code>&#39;wait&#39;</code></p>
+					</li>
+					<li><p><code>&#39;draw&#39;</code></p>
+					</li>
+					<li><p><code>&#39;zoomin&#39;</code></p>
+					</li>
+					<li><p><code>&#39;zoomout&#39;</code></p>
+					</li>
+					<li><p><code>&#39;clear&#39;</code></p>
+					</li>
+				</ul>
+				<p>监听项：</p>
+				<ul>
+					<li> <code>&#39;change&#39;: { type: MapCursorType }</code> → 当前地图鼠标样式变化触发</li>
+				</ul>
+				<a href="#mapelementdisplay-图元控制插件" id="mapelementdisplay-图元控制插件" style="color: inherit; text-decoration: none;">
+					<h3>MapElementDisplay 图元控制插件</h3>
+				</a>
+				<a href="#maptools-地图工具链插件" id="maptools-地图工具链插件" style="color: inherit; text-decoration: none;">
+					<h3>MapTools 地图工具链插件</h3>
+				</a>
+				<p>默认工具可选项：</p>
+				<ul>
+					<li><code>default</code></li>
+					<li><code>draw-point</code></li>
+					<li><code>draw-line</code></li>
+					<li><code>draw-line-faster</code></li>
+					<li><code>draw-polyline</code></li>
+					<li><code>draw-polygon</code></li>
+					<li><code>draw-rectangle</code></li>
+					<li><code>draw-rectangle-faster</code></li>
+					<li><code>draw-circle</code></li>
+					<li><code>draw-circle-faster</code></li>
+					<li><code>zoom-in</code></li>
+					<li><code>zoom-out</code></li>
+					<li><code>zoom-in-rect</code></li>
+					<li><code>zoom-out-rect</code></li>
+					<li><code>mark</code></li>
+					<li><code>mark-remove</code></li>
+					<li><code>measure</code></li>
+					<li><code>measure-remove</code></li>
+					<li><code>zoom-home</code></li>
+					<li><code>fullscreen</code></li>
+					<li><code>fullmap</code></li>
+					<li><code>clear</code></li>
+					<li><code>hit-test</code></li>
+				</ul>
+				<a href="#layeroperation-图层控制插件" id="layeroperation-图层控制插件" style="color: inherit; text-decoration: none;">
+					<h3>LayerOperation 图层控制插件</h3>
+				</a>
+				<a href="#uml" id="uml" style="color: inherit; text-decoration: none;">
+					<h2>UML</h2>
+				</a>
+				<p><img src="%E5%9F%BA%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E5%9E%8B%E7%9A%84%E5%9C%B0%E5%9B%BEAPI%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91UML.png" alt="基于业务功能型的地图API二次开发UML"></p>
+				<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
+					<h2>TODO</h2>
+				</a>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_basemap_hooks.html">hooks/basemap.hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_layer_operation_hooks.html">hooks/layer-<wbr>operation.hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_maptools_hooks.html">hooks/maptools.hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_mark_tool_hooks.html">hooks/mark-<wbr>tool.hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_measure_tool_hooks.html">hooks/measure-<wbr>tool.hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_basemap_basemap.html">plugins/basemap/basemap</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_layer_operation_layer_operation.html">plugins/layer-<wbr>operation/layer-<wbr>operation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_cursor_map_cursor.html">plugins/map-<wbr>cursor/map-<wbr>cursor</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_element_display_map_element_display.html">plugins/map-<wbr>element-<wbr>display/map-<wbr>element-<wbr>display</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_base_tool.html">plugins/map-<wbr>tools/base-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_map_tools.html">plugins/map-<wbr>tools/map-<wbr>tools</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_clear_clear_tool.html">plugins/map-<wbr>tools/tools/clear/clear-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_draw_draw_tool.html">plugins/map-<wbr>tools/tools/draw/draw-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_draw_drawer.html">plugins/map-<wbr>tools/tools/draw/drawer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_fullscreen_fullsceen_tool.html">plugins/map-<wbr>tools/tools/fullscreen/fullsceen-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_hit_test_hit_test_tool.html">plugins/map-<wbr>tools/tools/hit-<wbr>test/hit-<wbr>test-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_mark_mark_remove_tool.html">plugins/map-<wbr>tools/tools/mark/mark-<wbr>remove-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_mark_mark_tool.html">plugins/map-<wbr>tools/tools/mark/mark-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_measure_measure_remove_tool.html">plugins/map-<wbr>tools/tools/measure/measure-<wbr>remove-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_measure_measure_tool.html">plugins/map-<wbr>tools/tools/measure/measure-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_fullmap_tool.html">plugins/map-<wbr>tools/tools/zoom/fullmap-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_zoom_home_tool.html">plugins/map-<wbr>tools/tools/zoom/zoom-<wbr>home-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_zoom_in_rect_tool.html">plugins/map-<wbr>tools/tools/zoom/zoom-<wbr>in-<wbr>rect-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_zoom_in_tool.html">plugins/map-<wbr>tools/tools/zoom/zoom-<wbr>in-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_zoom_out_rect_tool.html">plugins/map-<wbr>tools/tools/zoom/zoom-<wbr>out-<wbr>rect-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/plugins_map_tools_tools_zoom_zoom_out_tool.html">plugins/map-<wbr>tools/tools/zoom/zoom-<wbr>out-<wbr>tool</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utilities_base_utilities.html">utilities/base.utilities</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utilities_geom_utilities.html">utilities/geom.utilities</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utilities_layer_utilities.html">utilities/layer.utilities</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utilities_style_utilities.html">utilities/style.utilities</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/web_map_plugin_web_map_plugin.html">web-<wbr>map-<wbr>plugin/web-<wbr>map-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/web_map_web_map.html">web-<wbr>map/web-<wbr>map</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

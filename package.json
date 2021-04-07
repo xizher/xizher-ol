@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "vite",
+    "typedoc": "npx typedoc --out ./docs src/ --tsconfig tsconfig.json",
     "build": "npx tsc -w"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.5",
     "eslint": "^7.23.0",
+    "typedoc": "^0.20.35",
     "typescript": "^4.2.3",
     "vite": "^2.1.5"
   },

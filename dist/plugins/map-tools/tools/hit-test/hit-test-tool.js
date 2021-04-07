@@ -26,10 +26,10 @@ export class HitTestTool extends DrawTool {
         }
         this.clearDrawed();
         const coordinates = drawFeatures[0].getGeometry().getCoordinates();
-        const pixel = this.map.getPixelFromCoordinate(coordinates);
+        const pixel = this.map_.getPixelFromCoordinate(coordinates);
         let features = [];
         if (this._targetLayers.length === 0) {
-            features = this.map.getFeaturesAtPixel(pixel);
+            features = this.map_.getFeaturesAtPixel(pixel);
         }
         else {
             this._targetLayers.forEach(layer => {

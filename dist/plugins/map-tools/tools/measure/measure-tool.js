@@ -143,7 +143,7 @@ export class MeasureTool extends BaseTool {
             offset: [15, 0],
             positioning: 'center-left',
         });
-        this.map.addOverlay(this._helpTooltip);
+        this.map_.addOverlay(this._helpTooltip);
     }
     /** 创建测量提醒 */
     _createMeasureTooltip() {
@@ -157,7 +157,7 @@ export class MeasureTool extends BaseTool {
             offset: [0, -15],
             positioning: 'bottom-center',
         });
-        this.map.addOverlay(this._measureTooltip);
+        this.map_.addOverlay(this._measureTooltip);
     }
     /**
      * 计算面积
@@ -186,11 +186,11 @@ export class MeasureTool extends BaseTool {
     /** 清理测量信息 */
     clearMeasure() {
         // this._measureTooltipPool.forEach(item => {
-        //   this.map.removeOverlay(item)
+        //   this.map_.removeOverlay(item)
         // })
         // ext(this._measureTooltipPool).clear()
         this._measureTooltipPool.forEach(overlay => {
-            this.map.removeOverlay(overlay);
+            this.map_.removeOverlay(overlay);
         });
         this._measureTooltipPool.clear();
         this._source.clear();
@@ -202,7 +202,7 @@ export class MeasureTool extends BaseTool {
      */
     removeMeasure(feature) {
         const overlay = this._measureTooltipPool.get(feature);
-        this.map.removeOverlay(overlay);
+        this.map_.removeOverlay(overlay);
         this._source.removeFeature(feature);
         this._measureTooltipPool.delete(feature);
         return this;
@@ -213,10 +213,10 @@ export class MeasureTool extends BaseTool {
         this.fire('change:type', { type });
         if (this.actived) {
             this._feature = null;
-            this.map.removeOverlay(this._measureTooltip);
+            this.map_.removeOverlay(this._measureTooltip);
             this._createMeasureTooltip();
-            this.map.removeInteraction(this._draw);
-            this.map.addInteraction(this._createDraw());
+            this.map_.removeInteraction(this._draw);
+            this.map_.addInteraction(this._createDraw());
         }
         return this;
     }
@@ -228,11 +228,11 @@ export class MeasureTool extends BaseTool {
         this._createHelpTooltip();
         this._createMeasureTooltip();
         this._createDraw();
-        this.map.getLayers().remove(this._vectorLayer);
-        this.map.addLayer(this._vectorLayer);
-        this.map.addInteraction(this._draw);
-        this.map.on('pointermove', this._handlerMousemove);
-        this.map.getViewport().addEventListener('mouseout', this._handlerMouseout);
+        this.map_.getLayers().remove(this._vectorLayer);
+        this.map_.addLayer(this._vectorLayer);
+        this.map_.addInteraction(this._draw);
+        this.map_.on('pointermove', this._handlerMousemove);
+        this.map_.getViewport().addEventListener('mouseout', this._handlerMouseout);
         return true;
     }
     /** 工具失活处理事件 */
@@ -241,11 +241,11 @@ export class MeasureTool extends BaseTool {
             return false;
         }
         this._feature = null;
-        this.map.removeOverlay(this._helpTooltip);
-        this.map.removeOverlay(this._measureTooltip);
-        this.map.removeInteraction(this._draw);
-        this.map.un('pointermove', this._handlerMousemove);
-        this.map.getViewport().removeEventListener('mouseout', this._handlerMouseout);
+        this.map_.removeOverlay(this._helpTooltip);
+        this.map_.removeOverlay(this._measureTooltip);
+        this.map_.removeInteraction(this._draw);
+        this.map_.un('pointermove', this._handlerMousemove);
+        this.map_.getViewport().removeEventListener('mouseout', this._handlerMouseout);
         return true;
     }
 }

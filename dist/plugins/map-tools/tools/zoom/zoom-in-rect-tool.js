@@ -27,7 +27,7 @@ export class ZoomInRectTool extends DrawTool {
         if (result) {
             this.clearDrawed();
             const [feature] = result;
-            this.view.fit(feature.getGeometry().getExtent(), { duration: 500 });
+            this.view_.fit(feature.getGeometry().getExtent(), { duration: 500 });
         }
         return result;
     }

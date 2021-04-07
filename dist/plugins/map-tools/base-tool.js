@@ -13,20 +13,14 @@ export class BaseTool extends Observer {
         super();
         /** 工具是否为激活状态 */
         this._actived = false;
-        this._map = map;
-        this._view = view;
+        this.map_ = map;
+        this.view_ = view;
         this._isOnceTool = isOnceTool;
         this.on('tool-actived', e => this.onToolActived(e));
         this.on('tool-deactived', e => this.onToolDeActived(e));
     }
     //#endregion
     //#region getter
-    get map() {
-        return this._map;
-    }
-    get view() {
-        return this._view;
-    }
     get isOnceTool() {
         return this._isOnceTool;
     }

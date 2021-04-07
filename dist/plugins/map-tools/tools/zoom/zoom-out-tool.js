@@ -19,8 +19,8 @@ export class ZoomOutTool extends BaseTool {
         if (!super.onToolActived(event)) {
             return false;
         }
-        const zoom = this.view.getZoom() - 1;
-        this.view.animate({
+        const zoom = this.view_.getZoom() - 1;
+        this.view_.animate({
             zoom, duration: 500
         });
         return true;

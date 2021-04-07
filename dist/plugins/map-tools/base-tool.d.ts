@@ -9,16 +9,14 @@ export declare class BaseTool<T> extends Observer<T & {
     'tool-actived': void;
     'tool-deactived': void;
 }> {
-    /** 地图对象 */
-    private _map;
-    /** 视图对象 */
-    private _view;
     /** 是否为一次性工具 */
     private _isOnceTool;
     /** 工具是否为激活状态 */
     private _actived;
-    get map(): IMap;
-    get view(): IView;
+    /** 地图对象 */
+    protected map_: IMap;
+    /** 视图对象 */
+    protected view_: IView;
     get isOnceTool(): boolean;
     get actived(): boolean;
     /**

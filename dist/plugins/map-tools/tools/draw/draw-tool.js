@@ -95,7 +95,7 @@ export class DrawTool extends BaseTool {
         if (!super.onToolActived(e)) {
             return false;
         }
-        this.map.$owner.mapCursor.setCursor(this._cursorType);
+        this.map_.$owner.mapCursor.setCursor(this._cursorType);
         DrawTool[`_${this._drawType}`](this);
         return true;
     }
@@ -104,7 +104,7 @@ export class DrawTool extends BaseTool {
         if (!super.onToolDeActived(e)) {
             return false;
         }
-        this.map.$owner.mapCursor.setCursor('default');
+        this.map_.$owner.mapCursor.setCursor('default');
         DrawTool._ClearDrawHandlers();
         return true;
     }
@@ -123,7 +123,7 @@ export class DrawTool extends BaseTool {
     /** 绘制点 */
     static '_point'(drawTool) {
         this._ClearDrawHandlers();
-        const handler = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handler = drawTool.map_.on('singleclick', ({ coordinate }) => {
             const geometry = createPoint(coordinate);
             drawTool.fire('draw-start', { coordinate });
             drawTool.fire('draw-end', { geometry });
@@ -135,7 +135,7 @@ export class DrawTool extends BaseTool {
     static '_line'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startCoordinate = null;
-        const handlerStartAndEnd = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handlerStartAndEnd = drawTool.map_.on('singleclick', ({ coordinate }) => {
             if (drawing) {
                 drawing = false;
                 const geometry = createLineString([startCoordinate, coordinate]);
@@ -148,7 +148,7 @@ export class DrawTool extends BaseTool {
                 drawTool.fire('draw-start', { coordinate });
             }
         });
-        const handlerMove = drawTool.map.on('pointermove', e => {
+        const handlerMove = drawTool.map_.on('pointermove', e => {
             if (drawing && startCoordinate) {
                 const geometry = createLineString([startCoordinate, e.coordinate]);
                 drawTool.fire('draw-move', { geometry });
@@ -167,7 +167,7 @@ export class DrawTool extends BaseTool {
     static '_line-faster'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startCoordinate = null;
-        const handlerMove = drawTool.map.on('pointermove', (e) => {
+        const handlerMove = drawTool.map_.on('pointermove', (e) => {
             if (drawing) {
                 const geometry = createLineString([startCoordinate, e.coordinate]);
                 drawTool.fire('draw-move', { geometry });
@@ -179,7 +179,7 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = true;
-            startCoordinate = drawTool.map.getEventCoordinate(e);
+            startCoordinate = drawTool.map_.getEventCoordinate(e);
             drawTool.fire('draw-start', { coordinate: startCoordinate });
         }
         function handlerMouseup(e) {
@@ -187,22 +187,22 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = false;
-            const coordinate = drawTool.map.getEventCoordinate(e);
+            const coordinate = drawTool.map_.getEventCoordinate(e);
             const geometry = createLineString([startCoordinate, coordinate]);
             drawTool.fire('draw-end', { geometry });
         }
-        drawTool.map.getTargetElement().addEventListener('mousedown', handlerMousedown);
-        drawTool.map.getTargetElement().addEventListener('mouseup', handlerMouseup);
+        drawTool.map_.getTargetElement().addEventListener('mousedown', handlerMousedown);
+        drawTool.map_.getTargetElement().addEventListener('mouseup', handlerMouseup);
         {
             const remove = () => unByKey(handlerMove);
             this._handlerPool['pointermove'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mousedown', handlerMousedown);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mousedown', handlerMousedown);
             this._handlerPool['mousedown'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mouseup', handlerMouseup);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mouseup', handlerMouseup);
             this._handlerPool['mouseup'] = { remove };
         }
     }
@@ -211,7 +211,7 @@ export class DrawTool extends BaseTool {
         this._ClearDrawHandlers();
         let drawing = false;
         const coordinates = [];
-        const handlerSingleClick = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handlerSingleClick = drawTool.map_.on('singleclick', ({ coordinate }) => {
             coordinates.push(coordinate);
             if (!drawing) {
                 drawing = true;
@@ -219,10 +219,10 @@ export class DrawTool extends BaseTool {
             }
         });
         {
-            const remove = () => drawTool.map.un('singleclick', handlerSingleClick.listener);
+            const remove = () => drawTool.map_.un('singleclick', handlerSingleClick.listener);
             this._handlerPool['singleclick'] = { remove };
         }
-        const handlerDbClick = drawTool.map.on('dblclick', e => {
+        const handlerDbClick = drawTool.map_.on('dblclick', e => {
             if (drawing) {
                 e.stopPropagation();
                 coordinates.push(e.coordinate);
@@ -236,7 +236,7 @@ export class DrawTool extends BaseTool {
             const remove = () => unByKey(handlerDbClick);
             this._handlerPool['dbclick'] = { remove };
         }
-        const handlerPointermove = drawTool.map.on('pointermove', ({ coordinate }) => {
+        const handlerPointermove = drawTool.map_.on('pointermove', ({ coordinate }) => {
             if (drawing) {
                 const geometry = createLineString([...coordinates, coordinate]);
                 drawTool.fire('draw-move', { geometry });
@@ -252,7 +252,7 @@ export class DrawTool extends BaseTool {
         this._ClearDrawHandlers();
         let drawing = false;
         const coordinates = [];
-        const handlerSingleClick = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handlerSingleClick = drawTool.map_.on('singleclick', ({ coordinate }) => {
             coordinates.push(coordinate);
             if (!drawing) {
                 drawing = true;
@@ -263,7 +263,7 @@ export class DrawTool extends BaseTool {
             const remove = () => unByKey(handlerSingleClick);
             this._handlerPool['singleclick'] = { remove };
         }
-        const handlerDbClick = drawTool.map.on('dblclick', e => {
+        const handlerDbClick = drawTool.map_.on('dblclick', e => {
             if (drawing) {
                 e.stopPropagation();
                 coordinates.push(e.coordinate);
@@ -277,7 +277,7 @@ export class DrawTool extends BaseTool {
             const remove = () => unByKey(handlerDbClick);
             this._handlerPool['dbclick'] = { remove };
         }
-        const handlerPointermove = drawTool.map.on('pointermove', ({ coordinate }) => {
+        const handlerPointermove = drawTool.map_.on('pointermove', ({ coordinate }) => {
             if (drawing) {
                 const geometry = createPolygon([[...coordinates, coordinate]]);
                 drawTool.fire('draw-move', { geometry });
@@ -292,7 +292,7 @@ export class DrawTool extends BaseTool {
     static '_rectangle'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startX, startY;
-        const handlerStartAndEnd = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handlerStartAndEnd = drawTool.map_.on('singleclick', ({ coordinate }) => {
             if (drawing) {
                 drawing = false;
                 const [endX, endY] = coordinate;
@@ -310,7 +310,7 @@ export class DrawTool extends BaseTool {
                 drawTool.fire('draw-start', { coordinate });
             }
         });
-        const handlerMove = drawTool.map.on('pointermove', e => {
+        const handlerMove = drawTool.map_.on('pointermove', e => {
             if (drawing) {
                 const [endX, endY] = e.coordinate;
                 const coordinates = [[
@@ -334,7 +334,7 @@ export class DrawTool extends BaseTool {
     static '_rectangle-faster'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startX, startY;
-        const handlerMove = drawTool.map.on('pointermove', (e) => {
+        const handlerMove = drawTool.map_.on('pointermove', (e) => {
             if (drawing) {
                 const [endX, endY] = e.coordinate;
                 const coordinates = [[
@@ -351,7 +351,7 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = true;
-            [startX, startY] = drawTool.map.getEventCoordinate(e);
+            [startX, startY] = drawTool.map_.getEventCoordinate(e);
             drawTool.fire('draw-start', { coordinate: [startX, startY] });
         }
         function handlerMouseup(e) {
@@ -359,7 +359,7 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = false;
-            const [endX, endY] = drawTool.map.getEventCoordinate(e);
+            const [endX, endY] = drawTool.map_.getEventCoordinate(e);
             const coordinates = [[
                     [startX, startY], [startX, endY],
                     [endX, endY], [endX, startY],
@@ -367,18 +367,18 @@ export class DrawTool extends BaseTool {
             const geometry = createPolygon(coordinates);
             drawTool.fire('draw-end', { geometry });
         }
-        drawTool.map.getTargetElement().addEventListener('mousedown', handlerMousedown);
-        drawTool.map.getTargetElement().addEventListener('mouseup', handlerMouseup);
+        drawTool.map_.getTargetElement().addEventListener('mousedown', handlerMousedown);
+        drawTool.map_.getTargetElement().addEventListener('mouseup', handlerMouseup);
         {
             const remove = () => unByKey(handlerMove);
             this._handlerPool['pointermove'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mousedown', handlerMousedown);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mousedown', handlerMousedown);
             this._handlerPool['mousedown'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mouseup', handlerMouseup);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mouseup', handlerMouseup);
             this._handlerPool['mouseup'] = { remove };
         }
     }
@@ -386,7 +386,7 @@ export class DrawTool extends BaseTool {
     static '_circle'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startCoordinate = null;
-        const handlerStartAndEnd = drawTool.map.on('singleclick', ({ coordinate }) => {
+        const handlerStartAndEnd = drawTool.map_.on('singleclick', ({ coordinate }) => {
             if (drawing) {
                 drawing = false;
                 const radius = distanceByTwoPoint(startCoordinate, coordinate);
@@ -400,7 +400,7 @@ export class DrawTool extends BaseTool {
                 drawTool.fire('draw-start', { coordinate });
             }
         });
-        const handlerMove = drawTool.map.on('pointermove', e => {
+        const handlerMove = drawTool.map_.on('pointermove', e => {
             if (drawing && startCoordinate) {
                 const radius = distanceByTwoPoint(startCoordinate, e.coordinate);
                 const geometry = createCircle(startCoordinate, radius);
@@ -420,7 +420,7 @@ export class DrawTool extends BaseTool {
     static '_circle-faster'(drawTool) {
         this._ClearDrawHandlers();
         let drawing = false, startCoordinate = null;
-        const handlerMove = drawTool.map.on('pointermove', (e) => {
+        const handlerMove = drawTool.map_.on('pointermove', (e) => {
             if (drawing) {
                 const radius = distanceByTwoPoint(startCoordinate, e.coordinate);
                 const geometry = createCircle(startCoordinate, radius);
@@ -433,7 +433,7 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = true;
-            startCoordinate = drawTool.map.getEventCoordinate(e);
+            startCoordinate = drawTool.map_.getEventCoordinate(e);
             drawTool.fire('draw-start', { coordinate: startCoordinate });
         }
         function handlerMouseup(e) {
@@ -441,23 +441,23 @@ export class DrawTool extends BaseTool {
                 return;
             }
             drawing = false;
-            const coordinate = drawTool.map.getEventCoordinate(e);
+            const coordinate = drawTool.map_.getEventCoordinate(e);
             const radius = distanceByTwoPoint(startCoordinate, coordinate);
             const geometry = createCircle(startCoordinate, radius);
             drawTool.fire('draw-end', { geometry });
         }
-        drawTool.map.getTargetElement().addEventListener('mousedown', handlerMousedown);
-        drawTool.map.getTargetElement().addEventListener('mouseup', handlerMouseup);
+        drawTool.map_.getTargetElement().addEventListener('mousedown', handlerMousedown);
+        drawTool.map_.getTargetElement().addEventListener('mouseup', handlerMouseup);
         {
             const remove = () => unByKey(handlerMove);
             this._handlerPool['pointermove'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mousedown', handlerMousedown);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mousedown', handlerMousedown);
             this._handlerPool['mousedown'] = { remove };
         }
         {
-            const remove = () => drawTool.map.getTargetElement().removeEventListener('mouseup', handlerMouseup);
+            const remove = () => drawTool.map_.getTargetElement().removeEventListener('mouseup', handlerMouseup);
             this._handlerPool['mouseup'] = { remove };
         }
     }

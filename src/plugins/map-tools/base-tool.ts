@@ -14,12 +14,6 @@ export class BaseTool<T> extends Observer<T & { // eslint-disable-line @typescri
 
   //#region 私有方法
 
-  /** 地图对象 */
-  private _map: IMap
-
-  /** 视图对象 */
-  private _view: IView
-
   /** 是否为一次性工具 */
   private _isOnceTool: boolean
 
@@ -28,15 +22,17 @@ export class BaseTool<T> extends Observer<T & { // eslint-disable-line @typescri
 
   //#endregion
 
+  //#region 保护属性
+
+  /** 地图对象 */
+  protected map_: IMap
+
+  /** 视图对象 */
+  protected view_: IView
+
+  //#endregion
+
   //#region getter
-
-  get map () : IMap {
-    return this._map
-  }
-
-  get view () : IView {
-    return this._view
-  }
 
   get isOnceTool () : boolean {
     return this._isOnceTool
@@ -58,8 +54,8 @@ export class BaseTool<T> extends Observer<T & { // eslint-disable-line @typescri
    */
   constructor (map: IMap, view: IView, isOnceTool = false) {
     super()
-    this._map = map
-    this._view = view
+    this.map_ = map
+    this.view_ = view
     this._isOnceTool = isOnceTool
 
     this.on('tool-actived', e => this.onToolActived(e))

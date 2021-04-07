@@ -56,22 +56,22 @@ export class MarkRemoveTool extends BaseTool<{
     if (!super.onToolActived(event)) {
       return false
     }
-    this.map.addInteraction(this._select)
-    this.map.$owner.mapCursor.setCursor(this._cursorType)
+    this.map_.addInteraction(this._select)
+    this.map_.$owner.mapCursor.setCursor(this._cursorType)
     this._handlerMousedown = () => {
       const features = this._select.getFeatures()
       features.forEach(feat => this._markTool.removeMark(feat))
     }
-    this.map.getTargetElement().addEventListener('mousedown', this._handlerMousedown)
+    this.map_.getTargetElement().addEventListener('mousedown', this._handlerMousedown)
     this._handlerMousemove = (e: MouseEvent) => {
-      const pixel = this.map.getEventPixel(e)
-      const [feature] = this.map.getFeaturesAtPixel(pixel, {
+      const pixel = this.map_.getEventPixel(e)
+      const [feature] = this.map_.getFeaturesAtPixel(pixel, {
         layerFilter: layer => layer === this._markTool.layer
       }) as Feature[]
       this._select.getFeatures().clear()
       feature && this._select.getFeatures().push(feature)
     }
-    this.map.getTargetElement().addEventListener('mousemove', this._handlerMousemove)
+    this.map_.getTargetElement().addEventListener('mousemove', this._handlerMousemove)
     return true
   }
 
@@ -80,10 +80,10 @@ export class MarkRemoveTool extends BaseTool<{
     if (!super.onToolDeActived(e)) {
       return false
     }
-    this.map.removeInteraction(this._select)
-    this.map.$owner.mapCursor.setCursor('default')
-    this.map.getTargetElement().removeEventListener('mousedown', this._handlerMousedown)
-    this.map.getTargetElement().removeEventListener('mousemove', this._handlerMousemove)
+    this.map_.removeInteraction(this._select)
+    this.map_.$owner.mapCursor.setCursor('default')
+    this.map_.getTargetElement().removeEventListener('mousedown', this._handlerMousedown)
+    this.map_.getTargetElement().removeEventListener('mousemove', this._handlerMousemove)
     return true
   }
 

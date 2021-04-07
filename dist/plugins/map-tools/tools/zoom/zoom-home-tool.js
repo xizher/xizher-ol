@@ -30,12 +30,12 @@ export class ZoomHomeTool extends BaseTool {
             return false;
         }
         if (Array.isArray(this._homeExtent)) {
-            this.view.fit(this._homeExtent, {
+            this.view_.fit(this._homeExtent, {
                 duration: 500
             });
         }
         else {
-            this.view.animate({
+            this.view_.animate({
                 ...this._homeExtent, duration: 500
             });
         }

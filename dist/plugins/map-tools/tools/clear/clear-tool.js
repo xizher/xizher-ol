@@ -19,7 +19,7 @@ export class ClearTool extends BaseTool {
         if (!super.onToolActived(event)) {
             return false;
         }
-        this.map.$owner.mapElementDisplay.clearAll();
+        this.map_.$owner.mapElementDisplay.clearAll();
         return true;
     }
 }

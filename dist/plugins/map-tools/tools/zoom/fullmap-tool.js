@@ -19,9 +19,9 @@ export class FullmapTool extends BaseTool {
         if (!super.onToolActived(event)) {
             return false;
         }
-        const extent = this.map.$owner.layerOperation.getFullExtent();
+        const extent = this.map_.$owner.layerOperation.getFullExtent();
         if (extent) {
-            this.view.fit(extent, { duration: 500 });
+            this.view_.fit(extent, { duration: 500 });
         }
         return true;
     }

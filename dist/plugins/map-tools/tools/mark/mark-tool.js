@@ -67,8 +67,8 @@ export class MarkTool extends BaseTool {
         this._markType = type;
         this.fire('change:mark-type', { type });
         if (this.actived) {
-            this.map.removeInteraction(this._draw);
-            this.map.addInteraction(this._createDraw());
+            this.map_.removeInteraction(this._draw);
+            this.map_.addInteraction(this._createDraw());
         }
         else {
             this._createDraw();
@@ -80,11 +80,11 @@ export class MarkTool extends BaseTool {
         if (!super.onToolActived(e)) {
             return false;
         }
-        this.map.getLayers().remove(this._vectorLayer);
-        this.map.addLayer(this._vectorLayer);
-        this.map.addInteraction(this._modify);
-        this.map.addInteraction(this._draw);
-        this.map.addInteraction(this._snap);
+        this.map_.getLayers().remove(this._vectorLayer);
+        this.map_.addLayer(this._vectorLayer);
+        this.map_.addInteraction(this._modify);
+        this.map_.addInteraction(this._draw);
+        this.map_.addInteraction(this._snap);
         return true;
     }
     /** 工具失活处理事件 */
@@ -92,9 +92,9 @@ export class MarkTool extends BaseTool {
         if (!super.onToolDeActived(e)) {
             return false;
         }
-        this.map.removeInteraction(this._modify);
-        this.map.removeInteraction(this._draw);
-        this.map.removeInteraction(this._snap);
+        this.map_.removeInteraction(this._modify);
+        this.map_.removeInteraction(this._draw);
+        this.map_.removeInteraction(this._snap);
         return true;
     }
     /** 清理注记处理事件 */

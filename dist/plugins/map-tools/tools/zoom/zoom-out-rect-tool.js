@@ -28,7 +28,7 @@ export class ZoomOutRectTool extends DrawTool {
             this.clearDrawed();
             const [feature] = result;
             const [gXmin, gYmin, gXmax, gYmax] = feature.getGeometry().getExtent();
-            const [vXmin, vYmin, vXmax, vYmax] = this.view.calculateExtent();
+            const [vXmin, vYmin, vXmax, vYmax] = this.view_.calculateExtent();
             const [gWidth, gHeight] = [gXmax - gXmin, gYmax, gYmin];
             const [vWidth, vHeight] = [vXmax - vXmin, vYmax - vYmin];
             const nWidth = vWidth ** 2 / gWidth;
@@ -37,7 +37,7 @@ export class ZoomOutRectTool extends DrawTool {
             const nYmin = vYmin - ((gYmin - vYmin) * vHeight / gHeight);
             const nXmax = nXmin + Math.abs(nWidth);
             const nYMax = nYmin + Math.abs(nHeight);
-            this.view.fit([nXmin, nYmin, nXmax, nYMax], { duration: 500 });
+            this.view_.fit([nXmin, nYmin, nXmax, nYMax], { duration: 500 });
         }
         return result;
     }

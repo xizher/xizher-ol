@@ -6,6 +6,7 @@ import { baseUtils } from '@xizher/js-utils'
 import WebMapPlugin from '../web-map-plugin/web-map-plugin'
 import Basemap from '../plugins/basemap/basemap'
 import MapCursor from '../plugins/map-cursor/map-cursor'
+import MapElementDisplay from '../plugins/map-element-display/map-element-display'
 
 /** 地图对象接口 */
 export interface IMap extends OlMap {
@@ -32,6 +33,7 @@ export class WebMap extends Observer<{
 
   basemap?: Basemap
   mapCursor?: MapCursor
+  mapElementDisplay?: MapElementDisplay
 
   //#endregion
 

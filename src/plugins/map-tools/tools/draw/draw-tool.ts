@@ -53,10 +53,7 @@ export class DrawTool<T = {
     'draw-clear': {} // eslint-disable-line @typescript-eslint/ban-types
   }> {
 
-  //#region 私有方法
-
-  /** 绘图器对象 */
-  private _drawer: Drawer
+  //#region 私有属性
 
   /** 绘图类型 */
   private _drawType: DrawType
@@ -72,11 +69,14 @@ export class DrawTool<T = {
 
   //#endregion
 
-  //#region getter
+  //#region 保护属性
 
-  get drawer () : Drawer {
-    return this._drawer
-  }
+  /** 绘图器对象 */
+  protected drawer_: Drawer
+
+  //#endregion
+
+  //#region getter
 
   get isDrawOneTarget () : boolean {
     return this._isDrawOnlyOneTarget
@@ -109,7 +109,7 @@ export class DrawTool<T = {
       isDrawOnlyOneTarget: false
     }
     baseUtils.$extend(true, _options, options)
-    this._drawer = new Drawer(map.$owner.mapElementDisplay)
+    this.drawer_ = new Drawer(map.$owner.mapElementDisplay)
     this._drawType = _options.drawType
     this._cursorType = _options.cursorType
     this._isDrawOnlyOneTarget = _options.isDrawOnlyOneTarget
@@ -147,7 +147,7 @@ export class DrawTool<T = {
     if (!this.actived) {
       return false
     }
-    const features = this._drawer.setTemp(e.geometry, true) as Feature[]
+    const features = this.drawer_.setTemp(e.geometry, true) as Feature[]
     return features
   }
   /** 绘图结束处理事件 */
@@ -157,13 +157,13 @@ export class DrawTool<T = {
     }
     let features : Feature[]
     this._isDrawOnlyOneTarget
-      ? features = this._drawer.set(e.geometry, {}, true) as Feature[]
-      : features = this._drawer.add(e.geometry, {}, true) as Feature[]
+      ? features = this.drawer_.set(e.geometry, {}, true) as Feature[]
+      : features = this.drawer_.add(e.geometry, {}, true) as Feature[]
     return features
   }
   /** 绘图清除处理事件 */
   public onDrawClear (e: OnDrawClearParams<this>) : OnDrawClearReture { // eslint-disable-line @typescript-eslint/no-unused-vars
-    this._drawer.clear()
+    this.drawer_.clear()
     if (!this.actived) {
       return false
     }

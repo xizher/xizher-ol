@@ -39,8 +39,6 @@ export declare class DrawTool<T = {}> extends BaseTool<T & {
     };
     'draw-clear': {};
 }> {
-    /** 绘图器对象 */
-    private _drawer;
     /** 绘图类型 */
     private _drawType;
     /** 鼠标样式 */
@@ -49,7 +47,8 @@ export declare class DrawTool<T = {}> extends BaseTool<T & {
     private _isDrawOnlyOneTarget;
     /** 记录当前存在的绘制图元 */
     private _features;
-    get drawer(): Drawer;
+    /** 绘图器对象 */
+    protected drawer_: Drawer;
     get isDrawOneTarget(): boolean;
     set isDrawOneTarget(b: boolean);
     /**

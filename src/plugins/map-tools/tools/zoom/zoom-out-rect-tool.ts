@@ -17,7 +17,7 @@ export class ZoomOutRectTool extends DrawTool {
       cursorType: 'zoomout'
     })
 
-    this.drawer.setDrawingStyle({
+    this.drawer_.setDrawingStyle({
       polygonStyle: {
         fill: { color: 'rgba(0, 0, 0, 0.5)' },
         stroke: { color: 'rgba(0, 0, 0, 0.8)' },

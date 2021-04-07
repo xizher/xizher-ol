@@ -23,7 +23,7 @@ export class DrawTool extends BaseTool {
             isDrawOnlyOneTarget: false
         };
         baseUtils.$extend(true, _options, options);
-        this._drawer = new Drawer(map.$owner.mapElementDisplay);
+        this.drawer_ = new Drawer(map.$owner.mapElementDisplay);
         this._drawType = _options.drawType;
         this._cursorType = _options.cursorType;
         this._isDrawOnlyOneTarget = _options.isDrawOnlyOneTarget;
@@ -34,9 +34,6 @@ export class DrawTool extends BaseTool {
     }
     //#endregion
     //#region getter
-    get drawer() {
-        return this._drawer;
-    }
     get isDrawOneTarget() {
         return this._isDrawOnlyOneTarget;
     }
@@ -68,7 +65,7 @@ export class DrawTool extends BaseTool {
         if (!this.actived) {
             return false;
         }
-        const features = this._drawer.setTemp(e.geometry, true);
+        const features = this.drawer_.setTemp(e.geometry, true);
         return features;
     }
     /** 绘图结束处理事件 */
@@ -78,13 +75,13 @@ export class DrawTool extends BaseTool {
         }
         let features;
         this._isDrawOnlyOneTarget
-            ? features = this._drawer.set(e.geometry, {}, true)
-            : features = this._drawer.add(e.geometry, {}, true);
+            ? features = this.drawer_.set(e.geometry, {}, true)
+            : features = this.drawer_.add(e.geometry, {}, true);
         return features;
     }
     /** 绘图清除处理事件 */
     onDrawClear(e) {
-        this._drawer.clear();
+        this.drawer_.clear();
         if (!this.actived) {
             return false;
         }

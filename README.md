@@ -4,6 +4,8 @@
 
 基于Openlayers的业务功能型二次开发地图库，集成包括**地图底图控制**、**地图鼠标样式控制**等功能，这些功能可通过<u>*插件*</u>方式按需引入到地图库统一入口类WebMap中。
 
+SDK文档入口：[https://xizher.github.io/xizher-ol/docs](https://xizher.github.io/xizher-ol/docs)
+
 ## 安装
 
 ```bash

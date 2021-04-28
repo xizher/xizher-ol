@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IUniqueStyleOptions | @xizher/ol</title>
+	<title>IToolBaseEvent | @xizher/ol</title>
 	<meta name="description" content="Documentation for @xizher/ol">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,24 +55,32 @@
 					<a href="../modules.html">@xizher/ol</a>
 				</li>
 				<li>
-					<a href="../modules/utilities_style_utilities.html">utilities/style.utilities</a>
+					<a href="../modules/toolbox_tool_base.html">toolbox/tool.base</a>
 				</li>
 				<li>
-					<a href="utilities_style_utilities.iuniquestyleoptions.html">IUniqueStyleOptions</a>
+					<a href="toolbox_tool_base.itoolbaseevent.html">IToolBaseEvent</a>
 				</li>
 			</ul>
-			<h1>Interface IUniqueStyleOptions</h1>
+			<h1>Interface IToolBaseEvent&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IUniqueStyleOptions</span>
+						<span class="target">IToolBaseEvent</span>
 					</li>
 				</ul>
 			</section>
@@ -83,8 +91,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="utilities_style_utilities.iuniquestyleoptions.html#items" class="tsd-kind-icon">items</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="utilities_style_utilities.iuniquestyleoptions.html#uniquefield" class="tsd-kind-icon">unique<wbr>Field</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="toolbox_tool_base.itoolbaseevent.html#done" class="tsd-kind-icon">done</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="toolbox_tool_base.itoolbaseevent.html#executing" class="tsd-kind-icon">executing</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="toolbox_tool_base.itoolbaseevent.html#reset" class="tsd-kind-icon">reset</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,22 +102,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="items" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> items</h3>
-					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>style<span class="tsd-signature-symbol">: </span><a href="utilities_style_utilities.istyleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">IStyleOptions</a><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="done" class="tsd-anchor"></a>
+					<h3>done</h3>
+					<div class="tsd-signature tsd-kind-icon">done<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">; </span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/xizher/xizher-ol/blob/6965d5b/src/utilities/style.utilities.ts#L103">src/utilities/style.utilities.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/xizher/xizher-ol/blob/6965d5b/src/toolbox/tool.base.ts#L9">src/toolbox/tool.base.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="uniquefield" class="tsd-anchor"></a>
-					<h3>unique<wbr>Field</h3>
-					<div class="tsd-signature tsd-kind-icon">unique<wbr>Field<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="executing" class="tsd-anchor"></a>
+					<h3>executing</h3>
+					<div class="tsd-signature tsd-kind-icon">executing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/xizher/xizher-ol/blob/6965d5b/src/utilities/style.utilities.ts#L102">src/utilities/style.utilities.ts:102</a></li>
+							<li>Defined in <a href="https://github.com/xizher/xizher-ol/blob/6965d5b/src/toolbox/tool.base.ts#L16">src/toolbox/tool.base.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="reset" class="tsd-anchor"></a>
+					<h3>reset</h3>
+					<div class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/xizher/xizher-ol/blob/6965d5b/src/toolbox/tool.base.ts#L8">src/toolbox/tool.base.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -121,56 +140,44 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/utilities_style_utilities.html">utilities/style.utilities</a>
+						<a href="../modules/toolbox_tool_base.html">toolbox/tool.base</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="utilities_style_utilities.icirclestyleoptions.html" class="tsd-kind-icon">ICircle<wbr>Style<wbr>Options</a>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="../modules/toolbox_tool_base.html#default" class="tsd-kind-icon">default</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="utilities_style_utilities.iiconstyleoptions.html" class="tsd-kind-icon">IIcon<wbr>Style<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="utilities_style_utilities.iregularshapestyleoptions.html" class="tsd-kind-icon">IRegular<wbr>Shape<wbr>Style<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="utilities_style_utilities.istyleoptions.html" class="tsd-kind-icon">IStyle<wbr>Options</a>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/toolbox_tool_base.toolbase.html" class="tsd-kind-icon">Tool<wbr>Base</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="utilities_style_utilities.iuniquestyleoptions.html" class="tsd-kind-icon">IUnique<wbr>Style<wbr>Options</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="toolbox_tool_base.itoolbaseevent.html" class="tsd-kind-icon">ITool<wbr>Base<wbr>Event</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="utilities_style_utilities.iuniquestyleoptions.html#items" class="tsd-kind-icon">items</a>
+								<a href="toolbox_tool_base.itoolbaseevent.html#done" class="tsd-kind-icon">done</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="utilities_style_utilities.iuniquestyleoptions.html#uniquefield" class="tsd-kind-icon">unique<wbr>Field</a>
+								<a href="toolbox_tool_base.itoolbaseevent.html#executing" class="tsd-kind-icon">executing</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="toolbox_tool_base.itoolbaseevent.html#reset" class="tsd-kind-icon">reset</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createcirclestyle" class="tsd-kind-icon">create<wbr>Circle<wbr>Style</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/toolbox_tool_base.html#ondoneparams" class="tsd-kind-icon">On<wbr>Done<wbr>Params</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createfill" class="tsd-kind-icon">create<wbr>Fill</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/toolbox_tool_base.html#onexecutingparams" class="tsd-kind-icon">On<wbr>Executing<wbr>Params</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createstroke" class="tsd-kind-icon">create<wbr>Stroke</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createstyle" class="tsd-kind-icon">create<wbr>Style</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createstyle2" class="tsd-kind-icon">create<wbr>Style2</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/utilities_style_utilities.html#createuniquestyle" class="tsd-kind-icon">create<wbr>Unique<wbr>Style</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/toolbox_tool_base.html#onresetparams" class="tsd-kind-icon">On<wbr>Reset<wbr>Params</a>
 					</li>
 				</ul>
 			</nav>

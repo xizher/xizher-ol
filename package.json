@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/xizher/xizher-ol.git"
   },
-  "keywords": [],
+  "keywords": [
+    "gis",
+    "openlayers",
+    "typescript"
+  ],
   "author": "wuxizhe",
   "license": "ISC",
   "bugs": {
@@ -32,9 +36,9 @@
   },
   "dependencies": {
     "@xizher/fetch-helper": "^1.0.6",
-    "@xizher/js-ext": "^1.0.0",
-    "@xizher/js-utils": "^1.0.0",
-    "@xizher/observer": "^1.0.2",
+    "@xizher/js-ext": "^1.0.1",
+    "@xizher/js-utils": "^1.1.2",
+    "@xizher/observer": "^1.1.1",
     "ol": "^6.5.0",
     "vue": "^3.0.11"
   }

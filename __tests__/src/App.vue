@@ -7,6 +7,7 @@
     <MarkToolControl />
     <MeasureToolControl />
     <LayerOperationControl />
+    <ToolBoxControl />
   </div>
 </div>
 </template>
@@ -26,6 +27,7 @@ import BaseToolsControl from './components/BaseToolsControl.vue'
 import MarkToolControl from './components/MarkToolControl.vue'
 import MeasureToolControl from './components/MeasureToolControl.vue'
 import LayerOperationControl from './components/LayerOperationControl.vue'
+import ToolBoxControl from './components/ToolBoxControl.vue'
 export default {
   components: {
     BasemapControl,
@@ -33,6 +35,7 @@ export default {
     MarkToolControl,
     MeasureToolControl,
     LayerOperationControl,
+    ToolBoxControl,
   },
   name: 'test',
   setup () {

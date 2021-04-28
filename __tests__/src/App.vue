@@ -46,7 +46,8 @@ export default {
         projection: 'EPSG:4326', // EPSG:3857 or EPSG:4326
         center: [113, 23],
         zoom: 6,
-      }
+      },
+      debug: true
     })
       .use(new Basemap())
       .use(new MapCursor())
@@ -94,7 +95,7 @@ export default {
       }))
     const loaded = ref(false)
     const handler = webMap.on('loaded', () => {
-      window.webMap = webMap
+      console.log('webMap loaded')
       loaded.value = true
     })
     onMounted(() => { webMap.mount() })

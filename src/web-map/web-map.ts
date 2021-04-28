@@ -24,6 +24,8 @@ export interface IView extends OlView {
 export interface IWebMapOptions {
   mapOptions?: MapOptions
   viewOptions?: ViewOptions
+  debug?: boolean
+  debugName?: string
 }
 
 /** WebMap类 */
@@ -61,7 +63,9 @@ export class WebMap extends Observer<{
     },
     mapOptions: {
       controls: []
-    }
+    },
+    debug: false,
+    debugName: 'webMap',
   }
 
   //#endregion
@@ -102,11 +106,14 @@ export class WebMap extends Observer<{
 
   /** 初始化 */
   private _init () : this {
-    const { mapOptions, viewOptions } = this._options
+    const { mapOptions, viewOptions, debug, debugName } = this._options
     const view = new OlView(viewOptions)
     const map = new OlMap({ ...mapOptions, view })
     this._view = Object.assign(view, { $owner: this })
     this._map = Object.assign(map, { $owner: this })
+    if (debug) {
+      window[debugName] = this
+    }
     return this
   }
 

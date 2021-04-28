@@ -20,6 +20,8 @@ export interface IView extends OlView {
 export interface IWebMapOptions {
     mapOptions?: MapOptions;
     viewOptions?: ViewOptions;
+    debug?: boolean;
+    debugName?: string;
 }
 /** WebMap类 */
 export declare class WebMap extends Observer<{
